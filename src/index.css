@@ -3221,3 +3221,224 @@ header a.nav-appointment:hover {
   }
 }
 
+/* =====================================================
+   CREATIVE HORIZONTAL SCROLLER & ULTRA-THIN SCROLLBAR
+   Theme: Botanical / Smooth / Interactive
+===================================================== */
+
+.creative-scroller-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.scroller-controls-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  padding-inline: 4px;
+}
+
+.scroller-page-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--clinic-green);
+  letter-spacing: 1.5px;
+}
+
+.scroller-arrow-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scroller-arrow-btn {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--clinic-border);
+  background: var(--clinic-white);
+  color: var(--clinic-green);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scroller-arrow-btn:hover:not(:disabled) {
+  background: var(--clinic-green);
+  color: #fffefa;
+  border-color: var(--clinic-green);
+  transform: translateY(-1px);
+}
+
+.scroller-arrow-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Creative Ultra-Thin Scroll Track */
+.creative-scroller-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 4px 18px;
+  cursor: grab;
+  user-select: none;
+  /* Firefox ultra-thin scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #66836b rgba(23, 63, 50, 0.08);
+}
+
+.creative-scroller-track:active {
+  cursor: grabbing;
+}
+
+/* WebKit Ultra-Thin Sleek Scrollbar (4px) */
+.creative-scroller-track::-webkit-scrollbar {
+  height: 4px;
+}
+
+.creative-scroller-track::-webkit-scrollbar-track {
+  background: rgba(23, 63, 50, 0.08);
+  border-radius: 9999px;
+  margin-inline: 16px;
+}
+
+.creative-scroller-track::-webkit-scrollbar-thumb {
+  background: #66836b;
+  border-radius: 9999px;
+  transition: background 0.2s ease;
+}
+
+.creative-scroller-track::-webkit-scrollbar-thumb:hover {
+  background: #173f32;
+}
+
+/* Item Snapping and Sizing */
+.creative-scroller-item {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  height: auto;
+}
+
+.treatment-scroller-item {
+  width: 350px;
+}
+
+.treatment-scroller-item .treatment-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.treatment-scroller-item .treatment-link {
+  margin-top: auto;
+}
+
+.workshop-scroller-item {
+  width: 440px;
+}
+
+.workshop-scroller-item .workshop-card {
+  height: 100%;
+}
+
+.gallery-scroller-item {
+  width: 330px;
+}
+
+.gallery-scroller-item .gallery-card {
+  height: 100%;
+}
+
+.locality-scroller-item {
+  width: 295px;
+}
+
+.locality-scroller-item .locality-card {
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .treatment-scroller-item {
+    width: clamp(270px, 82vw, 340px);
+  }
+
+  .workshop-scroller-item {
+    width: clamp(280px, 84vw, 420px);
+  }
+
+  .gallery-scroller-item {
+    width: clamp(250px, 78vw, 320px);
+  }
+
+  .locality-scroller-item {
+    width: clamp(240px, 76vw, 290px);
+  }
+}
+
+/* Bottom Pagination Bar */
+.scroller-pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-inline: 6px;
+}
+
+.scroller-dots {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.scroller-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 9999px;
+  border: 0;
+  background: #bdc9bc;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.scroller-dot:hover {
+  background: #789273;
+}
+
+.scroller-dot.active {
+  width: 24px;
+  background: var(--clinic-green);
+}
+
+.scroller-hint-text {
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  color: var(--clinic-muted);
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .scroller-hint-text {
+    display: none;
+  }
+
+  .scroller-dots {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+

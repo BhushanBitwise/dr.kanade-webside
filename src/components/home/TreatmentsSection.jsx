@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { ArrowUpRight, Leaf } from "lucide-react";
 import { treatments } from "../../data/site";
 import SectionHeading from "./SectionHeading";
+import HorizontalScroller from "../common/HorizontalScroller";
 
 export default function TreatmentsSection() {
   return (
@@ -20,15 +20,14 @@ export default function TreatmentsSection() {
           description="Explore the consultation options available at our clinic. Your individual needs and treatment suitability are discussed during your consultation."
         />
 
-        <div className="treatment-grid">
+        <HorizontalScroller
+          className="treatments-scroller-wrap"
+          itemClassName="treatment-scroller-item"
+        >
           {treatments.map((treatment, index) => (
-            <motion.article
+            <article
               className="treatment-card"
               key={treatment.title || treatment.name || index}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, delay: index * 0.07 }}
             >
               <span className="treatment-number">
                 {String(index + 1).padStart(2, "0")}
@@ -49,9 +48,9 @@ export default function TreatmentsSection() {
               <Link to="/booking" className="treatment-link">
                 Ask about this <ArrowUpRight size={16} />
               </Link>
-            </motion.article>
+            </article>
           ))}
-        </div>
+        </HorizontalScroller>
       </div>
     </section>
   );

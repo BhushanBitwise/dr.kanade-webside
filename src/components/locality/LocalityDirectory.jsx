@@ -1,5 +1,6 @@
 import { puneLocalities } from "../../data/site";
 import LocalityCard from "./LocalityCard";
+import HorizontalScroller from "../common/HorizontalScroller";
 
 export default function LocalityDirectory() {
   return (
@@ -22,11 +23,14 @@ export default function LocalityDirectory() {
         </p>
       </div>
 
-      <div className="locality-grid">
+      <HorizontalScroller
+        className="locality-scroller-wrap"
+        itemClassName="locality-scroller-item"
+      >
         {puneLocalities.map((area) => (
           <LocalityCard key={area.slug} area={area} />
         ))}
-      </div>
+      </HorizontalScroller>
     </section>
   );
 }

@@ -1,13 +1,8 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Calendar, MapPin, Users, ArrowUpRight, Sparkles } from "lucide-react";
+import { MapPin, Users, ArrowUpRight, Sparkles } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { workshopsData } from "../../data/workshopData";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
-};
+import HorizontalScroller from "../common/HorizontalScroller";
 
 export default function WorkshopSection() {
   return (
@@ -25,17 +20,12 @@ export default function WorkshopSection() {
           description="Glimpses from our recent health awareness workshops and community events in Pune, dedicated to spreading the knowledge of holistic well-being and preventive care."
         />
 
-        <div className="workshop-grid">
-          {workshopsData.map((workshop, index) => (
-            <motion.article
-              className="workshop-card"
-              key={workshop.id}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: index * 0.08 }}
-            >
+        <HorizontalScroller
+          className="workshops-scroller-wrap"
+          itemClassName="workshop-scroller-item"
+        >
+          {workshopsData.map((workshop) => (
+            <article className="workshop-card" key={workshop.id}>
               <div className="workshop-image-box">
                 <img
                   src={workshop.image}
@@ -74,9 +64,9 @@ export default function WorkshopSection() {
                   Ask about upcoming sessions <ArrowUpRight size={15} />
                 </Link>
               </div>
-            </motion.article>
+            </article>
           ))}
-        </div>
+        </HorizontalScroller>
       </div>
     </section>
   );

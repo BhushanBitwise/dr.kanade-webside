@@ -38,6 +38,31 @@ body {
   line-height: 1.6;
 }
 
+/* Custom slim desktop window scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clinic-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bdc9bc;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #66836b;
+}
+
 #root {
   width: 100%;
   min-height: 100vh;
@@ -3282,7 +3307,7 @@ header a.nav-appointment:hover {
   transform: none;
 }
 
-/* Creative Ultra-Thin Scroll Track */
+/* Creative Ultra-Thin Scroll Track — Native OS Scrollbars 100% Suppressed */
 .creative-scroller-track {
   display: flex;
   gap: 20px;
@@ -3291,36 +3316,67 @@ header a.nav-appointment:hover {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding: 6px 4px 18px;
+  padding: 6px 4px 10px;
   cursor: grab;
   user-select: none;
-  /* Firefox ultra-thin scrollbar */
-  scrollbar-width: thin;
-  scrollbar-color: #66836b rgba(23, 63, 50, 0.08);
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 .creative-scroller-track:active {
   cursor: grabbing;
 }
 
-/* WebKit Ultra-Thin Sleek Scrollbar (4px) */
+/* Ensure no native scrollbar or ugly Windows arrow buttons appear on track */
 .creative-scroller-track::-webkit-scrollbar {
-  height: 4px;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
-.creative-scroller-track::-webkit-scrollbar-track {
-  background: rgba(23, 63, 50, 0.08);
+.creative-scroller-track::-webkit-scrollbar-button,
+.creative-scroller-track::-webkit-scrollbar-thumb,
+.creative-scroller-track::-webkit-scrollbar-track,
+.creative-scroller-track::-webkit-scrollbar-corner {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Custom Ultra-Slim Botanical Scrollbar Track (3px) */
+.custom-slim-scrollbar-wrap {
+  width: 100%;
+  margin-top: 14px;
+  padding-inline: 4px;
+}
+
+.custom-slim-scrollbar-track {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background: rgba(23, 63, 50, 0.09);
   border-radius: 9999px;
-  margin-inline: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: height 0.2s ease, background 0.2s ease;
 }
 
-.creative-scroller-track::-webkit-scrollbar-thumb {
+.custom-slim-scrollbar-track:hover {
+  height: 5px;
+  background: rgba(23, 63, 50, 0.15);
+}
+
+.custom-slim-scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  height: 100%;
   background: #66836b;
   border-radius: 9999px;
-  transition: background 0.2s ease;
+  transition: left 0.08s ease-out, background 0.2s ease;
+  pointer-events: none;
 }
 
-.creative-scroller-track::-webkit-scrollbar-thumb:hover {
+.custom-slim-scrollbar-track:hover .custom-slim-scrollbar-thumb {
   background: #173f32;
 }
 

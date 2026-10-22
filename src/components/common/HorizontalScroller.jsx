@@ -10,10 +10,14 @@ export default function HorizontalScroller({
   gap = 20,
 }) {
   const scrollerRef = useRef(null);
+  const trackBarRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0); // 0 to 100%
+  const [thumbWidthPercent, setThumbWidthPercent] = useState(25);
+
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
   const startScrollLeftRef = useRef(0);
@@ -33,6 +37,17 @@ export default function HorizontalScroller({
     const { scrollLeft, scrollWidth, clientWidth } = el;
     setCanScrollLeft(scrollLeft > 10);
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+
+    const maxScroll = scrollWidth - clientWidth;
+    if (maxScroll > 0) {
+      const progress = (scrollLeft / maxScroll) * 100;
+      setScrollProgress(Math.min(100, Math.max(0, progress)));
+      const visibleRatio = clientWidth / scrollWidth;
+      setThumbWidthPercent(Math.max(12, Math.min(100, visibleRatio * 100)));
+    } else {
+      setScrollProgress(0);
+      setThumbWidthPercent(100);
+    }
 
     // Calculate current active item index
     if (el.children.length > 0) {
@@ -82,7 +97,23 @@ export default function HorizontalScroller({
     });
   };
 
-  // Mouse drag-to-scroll handlers
+  // Click on the custom slim scrollbar track to jump/scroll smoothly
+  const handleTrackClick = (e) => {
+    const el = scrollerRef.current;
+    const track = trackBarRef.current;
+    if (!el || !track) return;
+
+    const rect = track.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    el.scrollTo({
+      left: ratio * maxScroll,
+      behavior: "smooth",
+    });
+  };
+
+  // Mouse drag-to-scroll handlers for the main cards container
   const handleMouseDown = (e) => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -119,6 +150,8 @@ export default function HorizontalScroller({
     }
   };
 
+  const thumbLeftPercent = (scrollProgress / 100) * (100 - thumbWidthPercent);
+
   return (
     <div className={`creative-scroller-wrapper ${className}`}>
       {/* Top Header Controls (if showControls is true and there are multiple items) */}
@@ -153,7 +186,7 @@ export default function HorizontalScroller({
         </div>
       )}
 
-      {/* The Scrollable Track with snap and custom thin scrollbar */}
+      {/* The Scrollable Track with snap (Native OS scrollbars completely hidden) */}
       <div
         ref={scrollerRef}
         className="creative-scroller-track"
@@ -173,7 +206,27 @@ export default function HorizontalScroller({
         ))}
       </div>
 
-      {/* Bottom Creative Pagination Dots & Scroll progress */}
+      {/* Custom Ultra-Slim Botanical Scrollbar Track (Zero ugly OS scrollbar!) */}
+      {items.length > 1 && (
+        <div className="custom-slim-scrollbar-wrap">
+          <div
+            ref={trackBarRef}
+            className="custom-slim-scrollbar-track"
+            onClick={handleTrackClick}
+            title="Click or drag to navigate"
+          >
+            <div
+              className="custom-slim-scrollbar-thumb"
+              style={{
+                width: `${thumbWidthPercent}%`,
+                left: `${thumbLeftPercent}%`,
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Bottom Creative Pagination Dots & Scroll indicator */}
       {showPagination && items.length > 1 && (
         <div className="scroller-pagination-bar">
           <div className="scroller-dots">

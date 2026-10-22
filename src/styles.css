@@ -1,0 +1,673 @@
+
+/* =====================================================
+   LOCALITY DIRECTORY + SEO PAGES — FINAL FIX
+   Theme: Botanical / Editorial / Premium
+===================================================== */
+
+/* Shared width utilities */
+
+.section-wrap {
+  width: min(1200px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+.section-pad {
+  padding-top: 76px;
+  padding-bottom: 76px;
+}
+
+/* IMPORTANT: The section itself must NOT be a grid */
+
+.locality-directory {
+  display: block !important;
+  width: 100%;
+  overflow: hidden;
+  background: #eef0e7;
+}
+
+.locality-directory > .section-heading {
+  width: min(720px, 100%);
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.locality-directory .section-heading h2 {
+  margin: 0;
+  color: #202d27;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 400;
+  line-height: 1.13;
+  letter-spacing: -1.8px;
+}
+
+.locality-directory .section-heading h2 em {
+  color: #66836b;
+  font-weight: 400;
+}
+
+.locality-intro {
+  max-width: 610px;
+  margin: 20px auto 0 !important;
+  color: #697269;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* Correct grid: all locality cards line up evenly */
+
+.locality-grid {
+  display: grid !important;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 16px;
+}
+
+/* The anchor itself is the card */
+
+.locality-grid > .locality-card {
+  display: flex !important;
+  min-width: 0;
+  min-height: 106px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 22px;
+  color: #24382d;
+  background: #fbfaf6;
+  border: 1px solid #dce1d5;
+  text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.locality-grid > .locality-card:hover {
+  background: #fffefa;
+  border-color: #91a58d;
+  box-shadow: 0 12px 28px rgba(27, 57, 40, 0.06);
+  transform: translateY(-3px);
+}
+
+.locality-card-icon {
+  display: grid;
+  flex: 0 0 43px;
+  width: 43px;
+  height: 43px;
+  place-items: center;
+  color: #214b38;
+  background: #e9ede2;
+  border: 1px solid #e0e6d9;
+  border-radius: 50%;
+}
+
+.locality-card > span:nth-child(2) {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.locality-card strong {
+  display: block;
+  color: #24382d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.locality-card small {
+  display: block;
+  color: #778076;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.locality-card > svg {
+  flex: 0 0 auto;
+  color: #58745e;
+  transition: transform 0.25s ease;
+}
+
+.locality-card:hover > svg {
+  transform: translate(3px, -3px);
+}
+
+/* =====================================================
+   INDIVIDUAL LOCALITY PAGES
+===================================================== */
+
+.locality-page {
+  min-height: 100vh;
+  color: #24342a;
+  background: #f7f5ef;
+}
+
+.locality-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-top: 24px;
+  padding-bottom: 20px;
+  color: #778076;
+  font-size: 12px;
+}
+
+.locality-breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #365b43;
+  text-decoration: none;
+}
+
+.locality-breadcrumb a:hover {
+  color: #789273;
+}
+
+.locality-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.7fr);
+  align-items: center;
+  gap: clamp(35px, 7vw, 90px);
+  padding-top: 62px;
+  padding-bottom: 82px;
+}
+
+.locality-hero-copy {
+  min-width: 0;
+}
+
+.locality-hero-copy .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #56745d;
+  font-size: 10px;
+  letter-spacing: 1.8px;
+}
+
+.eyebrow-line {
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  background: #789273;
+}
+
+.locality-hero h1 {
+  max-width: 720px;
+  margin: 22px 0;
+  color: #202d27;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 5.4vw, 72px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  overflow-wrap: anywhere;
+}
+
+.locality-hero h1 em,
+.locality-details h2 em,
+.locality-about h2 em,
+.locality-cta h2 em {
+  color: #66836b;
+  font-weight: 400;
+}
+
+.locality-hero .lead {
+  max-width: 620px;
+  color: #6b746d;
+  font-size: 15px;
+  line-height: 1.95;
+}
+
+.locality-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.button-dark {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  color: #fffefa;
+  background: #193f30;
+  border: 1px solid #193f30;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.button-dark:hover {
+  background: #2d5b43;
+}
+
+.locality-actions .text-link {
+  margin-top: 0;
+}
+
+.locality-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.locality-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #68736a;
+  font-size: 11px;
+}
+
+.locality-meta svg {
+  flex-shrink: 0;
+  color: #66836b;
+}
+
+.locality-hero-panel {
+  padding: clamp(28px, 4vw, 45px);
+  background: #e9ede2;
+  border: 1px solid #dce2d5;
+}
+
+.locality-panel-mark {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  margin-bottom: 28px;
+  color: #244d3b;
+  background: #f8f7f0;
+  border-radius: 50%;
+}
+
+.locality-hero-panel h2 {
+  margin: 12px 0 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.locality-hero-panel h2 em {
+  color: #66836b;
+}
+
+.locality-hero-panel > p:not(.eyebrow) {
+  color: #68736a;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.locality-hero-panel .text-link {
+  margin-top: 22px;
+}
+
+/* Details */
+
+.locality-details {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 70px;
+  background: #eef0e7;
+}
+
+.locality-details h2,
+.locality-about h2 {
+  margin: 0 0 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(35px, 4vw, 49px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.locality-details > div:first-child > p:not(.eyebrow),
+.locality-about > p:not(.eyebrow) {
+  color: #6b746d;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.locality-detail-list {
+  border-top: 1px solid #d5dccf;
+}
+
+.locality-detail-list > div {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: start;
+  gap: 15px;
+  padding: 22px 0;
+  border-bottom: 1px solid #d5dccf;
+}
+
+.locality-detail-list > div > svg {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  color: #244d3b;
+  background: #f9f8f2;
+  border-radius: 50%;
+}
+
+.locality-detail-list span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.locality-detail-list strong {
+  font-size: 13px;
+}
+
+.locality-detail-list small {
+  color: #6b746d;
+  font-size: 12px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+/* About / medical disclaimer */
+
+.locality-about {
+  max-width: 900px;
+  text-align: center;
+}
+
+.locality-about > p:not(.eyebrow) {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Visit card */
+
+.locality-visit-card {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 22px;
+  padding: 28px;
+  background: #fffefa;
+  border: 1px solid #dce1d5;
+}
+
+.locality-visit-card .locality-card-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+}
+
+.locality-visit-card h3 {
+  margin: 8px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.locality-visit-card p {
+  margin: 0;
+  color: #6b746d;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.locality-visit-card .text-link {
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* CTA */
+
+.locality-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  padding: clamp(28px, 5vw, 55px);
+  color: #fffefa;
+  background: #193f30;
+}
+
+.locality-cta .eyebrow {
+  color: #c6d5c2;
+}
+
+.locality-cta h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.locality-cta h2 em {
+  color: #c6d5c2;
+}
+
+.locality-cta > div > p:last-child {
+  max-width: 520px;
+  color: #d4ded3;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.button-light {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 14px 19px;
+  color: #193f30;
+  background: #fffefa;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Other areas */
+
+.locality-other-areas {
+  padding-top: 25px;
+  padding-bottom: 80px;
+}
+
+.locality-other-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.locality-other-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+  padding: 15px;
+  color: #294333;
+  background: #eef0e7;
+  border: 1px solid #dce1d5;
+  font-size: 12px;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+
+.locality-other-links a:hover {
+  border-color: #91a58d;
+}
+
+.locality-other-links svg {
+  flex-shrink: 0;
+}
+
+/* Not found */
+
+.locality-page .section-wrap > h1 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 950px) {
+  .locality-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .locality-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 35px;
+  }
+
+  .locality-hero-panel {
+    max-width: 650px;
+  }
+
+  .locality-details {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 35px;
+  }
+
+  .locality-other-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .section-wrap {
+    width: calc(100% - 36px);
+  }
+
+  .section-pad {
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+
+  .locality-directory > .section-heading {
+    margin-bottom: 30px;
+  }
+
+  .locality-directory .section-heading h2 {
+    font-size: 39px;
+    letter-spacing: -1px;
+  }
+
+  .locality-intro {
+    font-size: 13px;
+  }
+
+  .locality-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .locality-grid > .locality-card {
+    min-height: 88px;
+    padding: 17px;
+  }
+
+  .locality-card strong {
+    font-size: 16px;
+  }
+
+  .locality-breadcrumb {
+    gap: 7px;
+    font-size: 11px;
+  }
+
+  .locality-hero {
+    padding-top: 35px;
+    padding-bottom: 55px;
+  }
+
+  .locality-hero h1 {
+    font-size: clamp(39px, 10.5vw, 52px);
+    letter-spacing: -1.3px;
+  }
+
+  .locality-hero .lead {
+    font-size: 13px;
+  }
+
+  .locality-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .locality-actions .button-dark {
+    width: 100%;
+  }
+
+  .locality-meta {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .locality-hero-panel {
+    padding: 26px;
+  }
+
+  .locality-details h2,
+  .locality-about h2 {
+    font-size: 36px;
+  }
+
+  .locality-visit-card {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .locality-visit-card h3 {
+    font-size: 20px;
+  }
+
+  .locality-visit-card > .text-link {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .locality-cta {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .locality-cta .button-light {
+    width: 100%;
+  }
+
+  .locality-other-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 360px) {
+  .locality-other-links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

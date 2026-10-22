@@ -1,0 +1,18 @@
+export const clinic = {
+  name: "Dr. Kanade's Homeopathic Clinic",
+  doctor: "Dr. Pranita Kanade",
+  qualification: "MD Homoeopathy",
+  experience: "9+ years of experience",
+  phone: "+917796120793",
+  phoneDisplay: "+91 77961 20793",
+  whatsapp: "917796120793",
+  email: "drkanadeshomoeopathicclinic@gmail.com",
+  address: "Row House No. 9, Next to Crazy Cheezy Cafe, Bharti Vidyapeeth, Dindayal Nagar, Katraj, Pune, Maharashtra 411046, India",
+  locality: "Katraj",
+  city: "Pune",
+  state: "Maharashtra",
+  pincode: "411046",
+  hours: "Mon–Sat: 10 AM–1 PM · 6 PM–9 PM",
+  closed: "Sunday",
+  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Row House No. 9, Next to Crazy Cheezy Cafe, Bharti Vidyapeeth, Dindayal Nagar, Katraj, Pune, Maharashtra 411046, India"),
+};
